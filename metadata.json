@@ -1,0 +1,410 @@
+{
+  "name": "Screenshot with Animated Data Flow",
+  "slug": "data-flow",
+  "version": 1,
+  "description": "Glowing particles and connection lines stream out from a tilted product screenshot, suggesting live data moving through the UI. Built for analytics, CRM, automation, AI agents and database products.",
+  "dependencies": [
+    "three"
+  ],
+  "authorName": "@ybouane",
+  "authorUrl": "https://x.com/ybouane",
+  "tags": [
+    "three",
+    "3d",
+    "screenshot",
+    "particles",
+    "data",
+    "flow",
+    "lines",
+    "analytics",
+    "ai",
+    "crm",
+    "automation"
+  ],
+  "category": "Premium",
+  "featured": true,
+  "poster": "/images/heroes/data-flow.png",
+  "install": {
+    "package": "@crazygl/hero-data-flow"
+  },
+  "config": {
+    "managedWidth": true,
+    "innerWidth": 1100,
+    "managedHeight": true,
+    "defaultHeight": 760,
+    "styleInheritance": "none",
+    "usesCanvas": true,
+    "usesWebGL": true,
+    "usesThree": true,
+    "pointerTracking": true,
+    "resizeTracking": true,
+    "interactive": true,
+    "supportsImages": true,
+    "supportsFontCustomization": true,
+    "interactivityModes": [
+      "pointer",
+      "none"
+    ],
+    "interactivity": "pointer"
+  },
+  "customizer": {
+    "sections": [
+      {
+        "label": "Content",
+        "fields": [
+          {
+            "id": "contentType",
+            "label": "Content Type",
+            "type": "select",
+            "default": "heading",
+            "options": [
+              {
+                "label": "Heading",
+                "value": "heading"
+              },
+              {
+                "label": "Two Columns",
+                "value": "two-columns"
+              },
+              {
+                "label": "Custom",
+                "value": "custom"
+              }
+            ]
+          },
+          {
+            "id": "heading",
+            "label": "Heading",
+            "type": "text",
+            "default": "Data, flowing.",
+            "showWhen": {
+              "contentType": "heading"
+            }
+          },
+          {
+            "id": "subheading",
+            "label": "Subheading",
+            "type": "textarea",
+            "default": "Watch your product breathe.",
+            "showWhen": {
+              "contentType": "heading"
+            }
+          },
+          {
+            "id": "column1",
+            "label": "Column 1",
+            "type": "node",
+            "default": "<h2>Always-on.</h2><p>Every event, every action \u2014 visualised as particles streaming out of your UI.</p>",
+            "showWhen": {
+              "contentType": "two-columns"
+            }
+          },
+          {
+            "id": "column2",
+            "label": "Column 2",
+            "type": "node",
+            "default": "<h2>Built for live products.</h2><p>Analytics, CRM, automation, AI agents, databases.</p>",
+            "showWhen": {
+              "contentType": "two-columns"
+            }
+          },
+          {
+            "id": "content",
+            "label": "Content",
+            "type": "node",
+            "default": "<h1>Your product, in motion.</h1>",
+            "showWhen": {
+              "contentType": "custom"
+            }
+          }
+        ]
+      },
+      {
+        "label": "Screenshot",
+        "fields": [
+          {
+            "id": "screenshot",
+            "label": "Screenshot",
+            "type": "media",
+            "default": "https://crazygl.com/samples/screenshot-dashboard-dark.avif",
+            "description": "Upload a screenshot of your product. PNG / JPG / AVIF / WebP. Default is a sample dashboard."
+          }
+        ]
+      },
+      {
+        "label": "Flow",
+        "fields": [
+          {
+            "id": "particleCount",
+            "label": "Particle count",
+            "type": "slider",
+            "default": 600,
+            "min": 100,
+            "max": 1200,
+            "step": 10,
+            "description": "Total active particles in the field. 600 is the visually-balanced default; below 250 reads as sparse; above 900 starts to fog the screenshot."
+          },
+          {
+            "id": "particleColor",
+            "label": "Particle color",
+            "type": "color",
+            "default": "#56e3ff"
+          },
+          {
+            "id": "accentColor",
+            "label": "Accent color",
+            "type": "color",
+            "default": "#ffb45a",
+            "description": "Warm accent particles, ~20% mix into the cyan field."
+          },
+          {
+            "id": "flowSpeed",
+            "label": "Flow speed",
+            "type": "slider",
+            "default": 0.7,
+            "min": 0,
+            "max": 2,
+            "step": 0.01,
+            "description": "Outward velocity multiplier. 0.7 is calm; 1.2+ feels frantic."
+          },
+          {
+            "id": "particleSize",
+            "label": "Particle size",
+            "type": "slider",
+            "default": 0.04,
+            "min": 0.02,
+            "max": 0.08,
+            "step": 0.005,
+            "unit": "world",
+            "description": "Point sprite size in world units. 0.04 is a clean spark; 0.07 looks like fireflies."
+          },
+          {
+            "id": "emissionRate",
+            "label": "Emission rate",
+            "type": "slider",
+            "default": 1.0,
+            "min": 0,
+            "max": 5,
+            "step": 0.05,
+            "unit": "/s/anchor",
+            "description": "How many particles each anchor point emits per second. Multiplied across ~14 anchors."
+          }
+        ]
+      },
+      {
+        "label": "Lines",
+        "fields": [
+          {
+            "id": "showLines",
+            "label": "Show connection lines",
+            "type": "toggle",
+            "default": true
+          },
+          {
+            "id": "lineOpacity",
+            "label": "Line opacity",
+            "type": "slider",
+            "default": 0.35,
+            "min": 0,
+            "max": 1,
+            "step": 0.01
+          },
+          {
+            "id": "lineMaxDistance",
+            "label": "Line max distance",
+            "type": "slider",
+            "default": 1.5,
+            "min": 0.5,
+            "max": 3,
+            "step": 0.05,
+            "unit": "world",
+            "description": "Length at which a particle's line to its origin fully fades. 1.5 reads as a tight halo around the screenshot."
+          }
+        ]
+      },
+      {
+        "label": "Cursor",
+        "fields": [
+          {
+            "id": "cursorAttract",
+            "label": "Cursor attract",
+            "type": "slider",
+            "default": 0.5,
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "description": "How strongly particles bend toward the pointer."
+          },
+          {
+            "id": "cursorBurst",
+            "label": "Cursor burst",
+            "type": "toggle",
+            "default": true,
+            "description": "Spawn extra particles near the cursor-nearest anchor."
+          }
+        ]
+      },
+      {
+        "label": "Screenshot Layout",
+        "fields": [
+          {
+            "id": "screenAspect",
+            "label": "Screen aspect",
+            "type": "slider",
+            "default": 1.6,
+            "min": 0.9,
+            "max": 2.2,
+            "step": 0.01,
+            "description": "Width / height ratio of the screenshot plane. 16:10 \u2248 1.6."
+          },
+          {
+            "id": "screenScale",
+            "label": "Screen size",
+            "type": "slider",
+            "default": 1.5,
+            "min": 0.4,
+            "max": 2.5,
+            "step": 0.05,
+            "description": "Size of the screenshot."
+          },
+          {
+            "id": "screenTilt",
+            "label": "Screen tilt",
+            "type": "slider",
+            "default": 10,
+            "min": -45,
+            "max": 45,
+            "step": 0.5,
+            "unit": "\u00b0",
+            "description": "Tilt of the screenshot toward the camera. Positive = top tilts back, negative = top tilts forward."
+          },
+          {
+            "id": "screenBrightness",
+            "label": "Screen brightness",
+            "type": "slider",
+            "default": 0.25,
+            "min": 0,
+            "max": 1,
+            "step": 0.01,
+            "description": "Emissive boost on the screen so it reads as 'lit'."
+          },
+          {
+            "id": "screenshotX",
+            "label": "Screenshot X offset",
+            "type": "slider",
+            "default": 0,
+            "min": -2,
+            "max": 2,
+            "step": 0.05,
+            "unit": "world",
+            "description": "Horizontal offset of the screenshot plane."
+          },
+          {
+            "id": "screenshotY",
+            "label": "Screenshot Y offset",
+            "type": "slider",
+            "default": 0,
+            "min": -2,
+            "max": 2,
+            "step": 0.05,
+            "unit": "world",
+            "description": "Vertical offset of the screenshot plane."
+          }
+        ]
+      },
+      {
+        "label": "Background",
+        "fields": [
+          {
+            "id": "bgTop",
+            "label": "Background top",
+            "type": "color",
+            "default": "#0a1020"
+          },
+          {
+            "id": "bgBottom",
+            "label": "Background bottom",
+            "type": "color",
+            "default": "#03050c"
+          },
+          {
+            "id": "ambientStars",
+            "label": "Ambient stars",
+            "type": "toggle",
+            "default": true,
+            "description": "A static, distant star field for depth."
+          }
+        ]
+      },
+      {
+        "label": "Layout",
+        "fields": [
+          {
+            "id": "contentAlign",
+            "label": "Content alignment",
+            "type": "select",
+            "default": "start",
+            "options": [
+              {
+                "label": "Start",
+                "value": "start"
+              },
+              {
+                "label": "Center",
+                "value": "center"
+              },
+              {
+                "label": "End",
+                "value": "end"
+              }
+            ]
+          },
+          {
+            "id": "heroHeight",
+            "label": "Hero height",
+            "type": "slider",
+            "default": 760,
+            "min": 480,
+            "max": 1080,
+            "step": 10,
+            "unit": "px"
+          },
+          {
+            "id": "paddingX",
+            "label": "Horizontal padding",
+            "type": "slider",
+            "default": 64,
+            "min": 0,
+            "max": 160,
+            "step": 4,
+            "unit": "px"
+          },
+          {
+            "id": "paddingY",
+            "label": "Vertical padding",
+            "type": "slider",
+            "default": 48,
+            "min": 0,
+            "max": 160,
+            "step": 4,
+            "unit": "px"
+          }
+        ]
+      },
+      {
+        "label": "Typography",
+        "fields": [
+          {
+            "id": "headingFontFamily",
+            "label": "Heading font",
+            "type": "font",
+            "default": "Inherit",
+            "showWhen": {
+              "contentType": "heading"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
