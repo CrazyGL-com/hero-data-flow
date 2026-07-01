@@ -3,7 +3,7 @@ name: data-flow
 description: "Glowing particles and connection lines stream out from a tilted product screenshot, suggesting live data moving through the UI. Built for analytics, CRM, automation, AI agents and database products."
 metadata:
   author: "@ybouane"
-  version: "0.1.0"
+  version: "0.1.1"
 ---
 
 ## How To Use This Skill
